@@ -290,7 +290,6 @@ $('document').ready(function(){
 
 //TO DO
 /*
-MAKE GITHUB REPO
 Work on testing undo after = is pressed, also lookingto using previous calculated result as first input.
 
 Prettify squishnumbers and button click function
