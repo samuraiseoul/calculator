@@ -1,0 +1,19 @@
+#calculator_container{
+	margin-top: 5em;
+}
+
+#calculator_border {
+	border: solid;
+}
+
+#display_container {
+	margin-top: 1em;
+}
+
+#display {
+	text-align: right;
+}
+
+textarea {
+	resize: none;
+}
