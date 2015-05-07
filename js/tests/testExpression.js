@@ -62,3 +62,5 @@ function testExpressions() {
 
 	testUndefinedExpression(new Expression(1, 2, "d"), 'undefined'); //invalid input
 }
+
+testExpressions();
