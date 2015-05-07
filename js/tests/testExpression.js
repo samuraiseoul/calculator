@@ -61,6 +61,14 @@ function testExpressions() {
 	testEqualExpression(new Expression(new Expression(3, new Expression(2, 2, "/"), "+") , 2, "+"), 6); //nesting expressions
 
 	testUndefinedExpression(new Expression(1, 2, "d"), 'undefined'); //invalid input
+
+	assertEquals(true, false); //test error_catching.
 }
 
-testExpressions();
+$(document).ready(function(){
+	try{
+		testExpressions();
+	} catch (e) {
+		$('#error').text(e.message);
+	}
+});

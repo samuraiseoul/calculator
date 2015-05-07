@@ -1,5 +1,9 @@
 $('document').ready(function(){
-	$('button').click(function(){
-		handleInput($(this).val(), $('#display'));
-	})
+		$('button').click(function(){
+			try {
+				handleInput($(this).val(), $('#display'));
+			} catch(e) {
+				$("#error").text(e.message);
+			}
+		});
 });
