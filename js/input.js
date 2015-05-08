@@ -4,10 +4,6 @@ var undoneInputs = [];
 
 var unclosedParenthesis = 0;
 
-function clearDisplay() {		
-	inputs = [];
-}
-
 function parenthesis(input) {
 	if(input == "(") {
 		unclosedParenthesis++;
@@ -15,6 +11,7 @@ function parenthesis(input) {
 	}
 
 	if(input == ")") {
+		//this is some minor syntax checking so users don't put in extra )
 		if(unclosedParenthesis == 0) {
 			return;
 		}
@@ -24,15 +21,16 @@ function parenthesis(input) {
 }
 
 function minusNegative(input, display) {
-	if(input == "-" && 
-		(inputs.length == 0 
-			|| (inputs.length > 1 
-				&& (
+	if(input == "-" && //if -
+		(inputs.length == 0 //and it's the first input
+			|| (inputs.length > 1 //or not the first input
+				&& ( //and the two previous inputs are not operators
 					isOperator(inputs[inputs.length - 1]) && !isOperator(inputs[inputs.length - 2])
 					)
 				)
 		)
 	) {
+		//add a -
 		inputs.push("-");
 		display.val(inputs.join(" "));
 	}
@@ -51,14 +49,15 @@ function redo(input) {
 }
 
 function clear(input) {
-	if(input == "clear") {
-		clearDisplay(display);
+	if(input == "clear") {		
+		inputs = [];
 	}
 }
 
 function equals(input, display) {
 	if(input == "=") {
 		var expression = createExpression();
+		//wrap the previous expression in parenthesis to preserve pemdas when working off it
 		inputs.unshift("(");
 		inputs.push(")");
 		display.val(expression.evaluate());
@@ -81,12 +80,14 @@ function handleInput(input, display){
 		return;
 	}
 
+	//special inputs
 	parenthesis(input);
 	undo(input);
 	redo(input);
 	square(input);
 	clear(input);
 
+	//allowable inputs
 	if(isOperator(input) || $.isNumeric(input) || input == ".") {
 		undoneInputs = [];
 		inputs.push(input);
