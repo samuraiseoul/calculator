@@ -11,6 +11,7 @@ function isOperator(val) {
 	}
 }
 
+//checks to see if there is more operations to be done
 function hasMoreOp(inputs, op) {
 	for(var i = 0 ; i < inputs.length ; i++) {
 		var input = inputs[i];
@@ -43,25 +44,25 @@ function squishNumbers() {
 	var currentNumber = "";
 	for(var i = 0 ; i < inputs.length ; i++) {
 		var input = inputs[i];
-		if(input == "-" && (i == 0 || isOperator(inputs[i-1]))) {
+		if(input == "-" && (i == 0 || isOperator(inputs[i-1]))) { //negative sign not a minus sign
 			currentNumber += input;
 			continue;
 		}
-		if(input == ".") {
+		if(input == ".") { //decimal point
 			currentNumber += input;
 			continue;
 		}
-		if($.isNumeric(input)) {
+		if($.isNumeric(input)) { //add number 
 			currentNumber += input;
 			if(i == (inputs.length - 1)){
-				squishedInputs.push(Number(currentNumber));
+				squishedInputs.push(Number(currentNumber)); //add full number to equation
 			}
 		} else if(isOperator(input) || input == "(" || input == ")") {
 			if($.isNumeric(inputs[i -1])) {
-				squishedInputs.push(Number(currentNumber));
+				squishedInputs.push(Number(currentNumber)); //add full number to equation
 				currentNumber = "";
 			}
-			squishedInputs.push(input);
+			squishedInputs.push(input); 
 		} else {
 			throw new Error("squish input, " + input + " , is not a valid input!!");
 		}
@@ -69,6 +70,7 @@ function squishNumbers() {
 	return squishedInputs;
 }
 
+//build equation based on comparator function
 function squishOps(inputs, comp) {
 	for(var i = 0 ; i < inputs.length ; i++) {
 		var input = inputs[i];
@@ -82,6 +84,8 @@ function squishOps(inputs, comp) {
 	}
 }
 
+
+//pemdas lowest on the food chain, do add, sub, then return the final result.
 function squishAdditionAndSubtraction(inputs) {
 	squishOps(inputs, function(input){ return (input == "+" || input == "-")});
 	if(hasMoreAddSubOps(inputs)) {
@@ -91,6 +95,7 @@ function squishAdditionAndSubtraction(inputs) {
 	}
 }
 
+//pemdas mult divide, then finally sub add
 function squishMultiplicationAndDivision(inputs) {
 	squishOps(inputs, function(input){ return (input == "*" || input == "/")});
 	if(hasMoreMultiDivOps(inputs)) {
@@ -100,6 +105,7 @@ function squishMultiplicationAndDivision(inputs) {
 	}
 }
 
+//pemdas, do exponent ops, til there are no more, then do mult, divide
 function squishExponents(inputs) {
 	squishOps(inputs, function(input){ return input == "^"});
 	if(hasMoreExponentOps(inputs)) {
@@ -109,6 +115,7 @@ function squishExponents(inputs) {
 	}
 }
 
+//pemdas do parenthesis ops until there are no more, then do exponents
 function squishParenthesis(inputs) {
 	for(var i = 0 ; i < inputs.length ; i++) {
 		var input = inputs[i];

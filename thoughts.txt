@@ -10,6 +10,19 @@ Great icons for added meaning wihtout resorting to images that take more resourc
 Reasons : I used web technologies for the rapid development of the gui as well as to re framiliarize myself with the technologies.
 
 Actual flow of app:
+Input gets caught in the app.js listener and passed to input.js handleInput()
+Once equals is intercepted, the combined input is passed into squishers
+The squishers function as follows.
+First squish numbers takes an array of say [1, 2, +, 3] and makes the array [12, +, 3]
+This array is then thrown into a recursive pemdas squisher, the first being the parenthesis squisher
+It squishes the parenthesis into expressions together until none are left by throwing it's return into itsself recursively until there are no more parenthesis ops left then throws them into the squisher for exponents
+this follows the same pattern, of calling it'sself till there are no more exponent ops, then calls the mult/divide squisher
+that squishes into expressions all the multiplications and division operators until there are no more of that class of ops then calls the add/sub squisher
+Finally when there are no more add/sub ops, it returns its self as one giant expression.
+That then get's checked to be sure there is only one expression, and that value is displayed 
+after you can work off that value or clear the buffer
+
+
 //do after comment issue is done.
 //explain squishing
 
