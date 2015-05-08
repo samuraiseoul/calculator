@@ -1,0 +1,31 @@
+Technologies: 
+Vanilla Js, Jquery:
+Actual app logic, jquery for a few utility functions, easier html selectors
+Html:
+To build the gui
+Css,Foundation:
+Foundation cause I hate CSS and it makes it much easier to rapidly build the gui.
+Font Awesome:
+Great icons for added meaning wihtout resorting to images that take more resources to load, and don't scale with display size well.
+Reasons : I used web technologies for the rapid development of the gui as well as to re framiliarize myself with the technologies.
+
+Actual flow of app:
+//do after comment issue is done.
+//explain squishing
+
+Challenging parts:
+Minus and Negative. Determining if a minus sign represents a negative or actual subtraction was a bit more challenging than expected.
+
+Parenthesis. First approach was matching the farthest parenthesis from the front with the closest one to the front, that failed. Then tried using the clsoest closing parenthesis to the first one, that one failed as well. Finally, used the first one after no more opening ones were found. 
+
+Key listener. This is far less trivial than it should be I want to die.
+
+REmaining bugs:
+Flaoting point math inaccuracies.
+undo and syntax checking/after equals
+foundation issue with error span
+
+Remaining features to add:
+key listener
+voice input/readback
+
