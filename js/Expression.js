@@ -10,7 +10,6 @@ function Expression(n1, n2, op) {
 		}
 		return number.evaluate();
 	}
-
 }
 
 Expression.prototype.evaluate = function() {
